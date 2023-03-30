@@ -63,8 +63,6 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "husky": "^7.0.1",
-    "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2",
     "jest-styled-components": "^7.0.5",
     "mockdate": "^2.0.5",
     "prettier": "2.3.2",
@@ -102,8 +100,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "resolutions": {
-    "fsevents": ">=2.0.0"
-  }
+  ]
 }
