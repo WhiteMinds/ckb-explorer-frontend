@@ -29,7 +29,7 @@ const Script = ({ script }: { script: State.Script }) => {
       <ScriptItem title={i18n.t('address.hash_type')}>
         <code>{script.hashType}</code>
       </ScriptItem>
-      <ScriptItem title={i18n.t('address.args')}>
+      <ScriptItem title={i18n.t('address.args')} tooltip={i18n.t('glossary.args')}>
         <span className="monospace">{script.args}</span>
       </ScriptItem>
     </ScriptPanel>

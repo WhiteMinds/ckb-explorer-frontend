@@ -111,6 +111,7 @@ const chartsData = (): ChartCategory[] => [
         title: `${i18n.t('block.hash_rate')}`,
         chart: <HashRateChart isThumbnail />,
         path: '/charts/hash-rate',
+        description: i18n.t('glossary.hash_rate'),
       },
       {
         title: `${i18n.t('block.uncle_rate')}`,

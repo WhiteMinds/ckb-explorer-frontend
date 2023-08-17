@@ -27,6 +27,7 @@ import { localeNumberString } from '../../../utils/number'
 import HashTag from '../../../components/HashTag'
 import { ReactComponent as CopyIcon } from '../../../assets/copy_icon.svg'
 import { ReactComponent as OuterLinkIcon } from '../../../assets/outer_link_icon.svg'
+import { HelpTip } from '../../../components/HelpTip'
 
 const initScriptContent = {
   lock: 'null',
@@ -277,9 +278,11 @@ export default ({ cell, onClose }: { cell: State.Cell; onClose: Function }) => {
       <TransactionCellDetailPanel>
         <TransactionDetailLock selected={state === CellState.LOCK} onClick={() => changeType(CellState.LOCK)}>
           {i18n.t('transaction.lock_script')}
+          <HelpTip title={i18n.t('glossary.lock_script')} placement="bottom" />
         </TransactionDetailLock>
         <TransactionDetailType selected={state === CellState.TYPE} onClick={() => changeType(CellState.TYPE)}>
           {i18n.t('transaction.type_script')}
+          <HelpTip title={i18n.t('glossary.type_script')} placement="bottom" />
         </TransactionDetailType>
         <TransactionDetailData selected={state === CellState.DATA} onClick={() => changeType(CellState.DATA)}>
           {i18n.t('transaction.data')}
@@ -289,6 +292,7 @@ export default ({ cell, onClose }: { cell: State.Cell; onClose: Function }) => {
           onClick={() => changeType(CellState.CAPACITY)}
         >
           {i18n.t('transaction.capacity_usage')}
+          <HelpTip title={i18n.t('glossary.capacity_usage')} placement="bottom" />
         </TransactionDetailCapacityUsage>
         <div className="transaction__detail__modal__close">
           <img src={CloseIcon} alt="close icon" tabIndex={-1} onKeyDown={() => {}} onClick={() => onClose()} />
