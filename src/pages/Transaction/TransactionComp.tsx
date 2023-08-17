@@ -26,6 +26,7 @@ import SimpleButton from '../../components/SimpleButton'
 import HashTag from '../../components/HashTag'
 import { useAddrFormatToggle } from '../../utils/hook'
 import ComparedToMaxTooltip from '../../components/Tooltip/ComparedToMaxTooltip'
+import { HelpTip } from '../../components/HelpTip'
 
 const showTxStatus = (txStatus: string) => txStatus?.replace(/^\S/, s => s.toUpperCase()) ?? '-'
 
@@ -48,17 +49,31 @@ const transactionParamsIcon = (show: boolean) => {
 
 const TransactionInfoItem = ({
   title,
+  tooltip,
   value,
+  valueTooltip,
   linkUrl,
   tag,
 }: {
   title?: string
+  tooltip?: string
   value: string | ReactNode
+  valueTooltip?: string
   linkUrl?: string
   tag?: ReactNode
 }) => (
   <TransactionInfoContentItem>
-    <div className="transaction__info__content_title">{title ? `${title}: ` : ''}</div>
+    <div className="transaction__info__content_title">
+      {title ? (
+        <>
+          <span>{title}</span>
+          {tooltip && <HelpTip title={tooltip} />}
+          <span>:</span>
+        </>
+      ) : (
+        ''
+      )}
+    </div>
     <div className="transaction__info__content_container monospace">
       <div className="transaction__info__content_value">
         {linkUrl ? (
@@ -68,6 +83,7 @@ const TransactionInfoItem = ({
         ) : (
           value
         )}
+        {valueTooltip && <HelpTip title={valueTooltip} />}
       </div>
       {tag && <div className="transaction__info__content__tag">{tag}</div>}
     </div>
@@ -76,15 +92,17 @@ const TransactionInfoItem = ({
 
 const TransactionInfoItemWrapper = ({
   title,
+  tooltip,
   value,
   linkUrl,
 }: {
   title?: string
+  tooltip?: string
   value: string | ReactNode
   linkUrl?: string
 }) => (
   <TransactionInfoContentPanel>
-    <TransactionInfoItem title={title} value={value} linkUrl={linkUrl} />
+    <TransactionInfoItem title={title} tooltip={tooltip} value={value} linkUrl={linkUrl} />
   </TransactionInfoContentPanel>
 )
 
@@ -300,7 +318,10 @@ export const TransactionOverview: FC<{ transaction: State.Transaction }> = ({ tr
             <div className="transaction__overview_params">
               {TransactionParams.map(item => (
                 <TransactionInfoItemPanel key={item.title}>
-                  <div className="transaction__info_title">{item.title}</div>
+                  <div className="transaction__info_title">
+                    <span>{item.title}</span>
+                    {item.tooltip && <HelpTip title={item.tooltip} />}
+                  </div>
                   <div className="transaction__info_value">{item.content}</div>
                 </TransactionInfoItemPanel>
               ))}

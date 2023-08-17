@@ -3,11 +3,14 @@ import { ScriptItemPanel, ScriptPanel } from './styled'
 import i18n from '../../utils/i18n'
 import HashTag from '../HashTag'
 import { getContractHashTag } from '../../utils/util'
+import { HelpTip } from '../HelpTip'
 
-const ScriptItem = ({ title, children }: { title: string; children?: ReactNode }) => (
+const ScriptItem = ({ title, tooltip, children }: { title: string; tooltip?: string; children?: ReactNode }) => (
   <ScriptItemPanel>
     <div className="script__title">
       <span>{title}</span>
+      {tooltip && <HelpTip title={tooltip} />}
+      <span>:</span>
     </div>
     <div className="script__content">{children}</div>
   </ScriptItemPanel>

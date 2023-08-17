@@ -37,6 +37,7 @@ import styles from './styles.module.scss'
 import AddressText from '../../components/AddressText'
 import ComparedToMaxTooltip from '../../components/Tooltip/ComparedToMaxTooltip'
 import Filter from '../../components/Search/Filter'
+import { HelpTip } from '../../components/HelpTip'
 
 const CELL_BASE_ANCHOR = 'cellbase'
 
@@ -273,7 +274,10 @@ export const BlockOverview: FC<{ block: State.Block }> = ({ block }) => {
           <span />
           {rootInfoItems.map(item => (
             <BlockRootInfoItemPanel key={item.title}>
-              <div className="block__root_info_title">{item.title}</div>
+              <div className="block__root_info_title">
+                <span>{item.title}</span>
+                {item.tooltip && <HelpTip title={item.tooltip} />}
+              </div>
               <div className="block__root_info_value monospace">{item.content}</div>
             </BlockRootInfoItemPanel>
           ))}
