@@ -3,6 +3,7 @@ import { Tooltip, TooltipProps } from 'antd'
 import classNames from 'classnames'
 import HelpIcon from '../../assets/qa_help.png'
 import styles from './index.module.scss'
+import { useIsMobile } from '../../utils/hook'
 
 export const HelpTip: FC<
   TooltipProps & {
@@ -11,9 +12,12 @@ export const HelpTip: FC<
     containerRef?: RefObject<HTMLDivElement>
   }
 > = ({ iconProps, containerRef, ...props }) => {
+  const isMobile = useIsMobile()
+
   const finalProps: TooltipProps = {
-    placement: 'top',
+    placement: isMobile ? 'topLeft' : 'top',
     getPopupContainer: () => containerRef?.current ?? document.body,
+    arrowPointAtCenter: true,
     ...props,
   }
 
